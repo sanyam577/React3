@@ -2,9 +2,19 @@ import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Container, Paper, Button } from '@mui/material';
+import backgroundImage from '../Images1/dimg.jpg'; // Import your background image
 
 export default function Emi() {
     const paperStyle = { padding: '50px 20px', width: 600, margin: "20px auto" };
+    const containerStyle = {
+        background: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        minHeight: '100vh', // Ensure the background covers the entire viewport height
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    };
+
     const [policyName, setPolicyName] = useState('');
     const [time, setTime] = useState('');
     const [emi, setEmi] = useState('');
@@ -27,42 +37,45 @@ export default function Emi() {
     }
 
     return (
-        <Container>
-            <Paper elevation={3} style={paperStyle}>
-                <h1 style={{ color: "Red" }}>Calculate EMI</h1>
-                <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 1 },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                >
-                    <TextField
-                        id="outlined-basic"
-                        label="Policy Name"
-                        variant="outlined"
-                        fullWidth
-                        value={policyName}
-                        onChange={(e) => setPolicyName(e.target.value)}
-                    />
-                    <TextField
-                        id="outlined-basic"
-                        label="Time Period"
-                        variant="outlined"
-                        fullWidth
-                        value={time}
-                        onChange={(e) => setTime(e.target.value)}
-                    />
-                    <Button variant="contained" color="success" onClick={handleClick}>
-                        Calculate EMI
-                    </Button>
-                </Box>
-                {emi !== '' && (
-                    <p>EMI: {emi}</p>
-                )}
-            </Paper>
-        </Container>
+        <div style={containerStyle}>
+            <Container>
+                <Paper elevation={3} style={paperStyle}>
+                    <h1 style={{ color: "Red" }}>Calculate EMI</h1>
+                    <Box
+                        component="form"
+                        sx={{
+                            '& > :not(style)': { m: 1 },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <TextField
+                            id="outlined-basic"
+                            label="Policy Name"
+                            variant="outlined"
+                            fullWidth
+                            value={policyName}
+                            onChange={(e) => setPolicyName(e.target.value)}
+                        />
+                        <TextField
+                            id="outlined-basic"
+                            label="Time Period"
+                            variant="outlined"
+                            fullWidth
+                            value={time}
+                            onChange={(e) => setTime(e.target.value)}
+                        />
+                        <Button variant="contained" color="success" onClick={handleClick}>
+                            Calculate EMI
+                        </Button>
+                    </Box>
+                    {emi !== '' && (
+                        <p>EMI: {emi}</p>
+                    )}
+                </Paper>
+            </Container>
+        </div>
     );
 }
+
 
